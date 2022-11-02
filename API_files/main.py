@@ -4,10 +4,9 @@ import apiCalls
 import jsonParser
 import json
 import subprocess
-import time
 
 if (apiCalls.grabMenShirts()):
-    subprocess.call(["php","-f","../publishLog.php","shirts grabbed"])
+    subprocess.call(["php","-f","../publishLog.php","Mens shirts grabbed"])
     idList = jsonParser.getPIDfromJson("MenShirtApiData.json")
     if len(idList) != 20:
         subprocess.call(["php","-f","../publishLog.php","error main: idList not 20"])
@@ -22,11 +21,11 @@ if (apiCalls.grabMenShirts()):
         exit()
     f = open('MenShirtsReady.json', 'w')
     json.dump(prodDict, f)
-    time.sleep(1)
+    f.close()
     subprocess.call(["php","-f","../dmzToWeb.php","MenShirtsReady.json"])
 
 if (apiCalls.grabWomenTops()):
-    subprocess.call(["php","-f","../publishLog.php","tops grabbed"])
+    subprocess.call(["php","-f","../publishLog.php","Women tops grabbed"])
     idList = jsonParser.getPIDfromJson("WomenTopsApiData.json")
     if len(idList) != 20:
         subprocess.call(["php","-f","../publishLog.php","error main: idList not 20"])
@@ -41,6 +40,6 @@ if (apiCalls.grabWomenTops()):
         
     f = open('WomenTopsReady.json', 'w')
     json.dump(prodDict, f)
-    time.sleep(1)
+    f.close()
     subprocess.call(["php","-f","../dmzToWeb.php","WomenTopsReady.json"])
 

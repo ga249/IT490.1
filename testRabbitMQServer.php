@@ -8,7 +8,7 @@ function doLogin($username,$password)
 {
     // lookup username in databas
     // check password
-    return true;
+    return "true";
     //return false if not valid
 }
 
@@ -25,7 +25,7 @@ function requestProcessor($request)
     case "login":
       return doLogin($request['username'],$request['password']);
     case "validate_session":
-      return doValidate($request['sessionId']);
+      //return doValidate($request['sessionId']);
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }

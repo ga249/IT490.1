@@ -6,10 +6,13 @@ require_once('rabbitMQLib.inc');
 
 $client = new rabbitMQClient("dmz.ini","dbServer");
 
-$file = ("API_files/" . $argv[1]);
+$filename = $argv[1];
+$filePath = ("API_files/" . $argv[1]);
 
-$jsonFile = fopen($file, "r") or die("Unable to open file!");
-$jsonText = fread($jsonFile, filesize($file));
+//echo $argv[1];
+echo filesize($filename);
+$jsonFile = fopen($filename, "r") or die("Unable to open file!");
+$jsonText = fread($jsonFile, filesize($filename));
 $jsonObj = json_decode($jsonText);
 
 $request = array();
