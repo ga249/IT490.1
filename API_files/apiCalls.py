@@ -19,6 +19,19 @@ def grabMenShirts():
     f.close()
     return True
 
+def grabMensPants():
+    querystring = {"keywords":"Mens Pants","language":"en","country":"US","currency":"USD","sort":"7","limit":"20","page":"1"}
+    url = "https://unofficial-shein.p.rapidapi.com/products/search"
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    if len(response.text) == 0:
+        subprocess.call(["php","-f","../publishLog.php","API request failed for Mens Pants"])
+        print("API request failed for Mens Pants")
+        return False
+    f = open("MenPantsApiData.json", 'w')
+    f.write(response.text)
+    f.close()
+    return True
+
 def grabWomenTops():
     querystring = {"keywords":"Womens Tops","language":"en","country":"US","currency":"USD","sort":"7","limit":"20","page":"1"}
     url = "https://unofficial-shein.p.rapidapi.com/products/search"
@@ -28,6 +41,19 @@ def grabWomenTops():
         print("API request failed for Womens Shirts")
         return False
     f = open("WomenTopsApiData.json", 'w')
+    f.write(response.text)
+    f.close()
+    return True
+
+def grabWomenBottoms():
+    querystring = {"keywords":"Womens Bottoms","language":"en","country":"US","currency":"USD","sort":"7","limit":"20","page":"1"}
+    url = "https://unofficial-shein.p.rapidapi.com/products/search"
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    if len(response.text) == 0:
+        subprocess.call(["php","-f","../publishLog.php","API request failed for Womens Shirts"])
+        print("API request failed for Womens Shirts")
+        return False
+    f = open("WomenBottomApiData.json", 'w')
     f.write(response.text)
     f.close()
     return True
